@@ -17,3 +17,11 @@ activity_labels <- read.table("./data/Dataset/UCI Har Dataset/activity_labels.tx
 subject_train <- read.table("./data/Dataset/UCI HAR Dataset/train/subject_train.txt", sep ="")
 # Load data linking row to subject who performed the activity for each window sample. Range 1 to 30
 subject_test <- read.table("./data/Dataset/UCI HAR Dataset/test/subject_test.txt", sep ="")
+# Load features data, these are the column headers for prior sets. 
+features <- read.table("./data/Dataset/UCI HAR Dataset/features.txt")
+
+# Modify the X_test and X_train sets to include label information and features
+X_test <- cbind(Y_test, X_test)
+names(X_test) <- c("labels",features$V2)
+X_train <- cbind(Y_train, X_train)
+names(X_train) <- c("labels",features$V2)
