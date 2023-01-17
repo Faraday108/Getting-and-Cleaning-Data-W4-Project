@@ -9,4 +9,15 @@
 ### Import Data ###
 # If not already done, import data using import_data.R. 
 
+## 1. Merge training and test sets to create one data set
+data <- rbind(X_train, X_test)
 
+## 2. Extract measurements on the mean and standard deviation for each measurement
+activity_column <- 1 # column of activity identifiers
+pattern <- "mean()|std()" # regex pattern to find mean and std measurements
+mean_std_columns <- grep(pattern, names(data)) # find columns
+
+data2 <- data[,c(activity_column,mean_std_columns)]
+
+## 3. Use descriptive names to name activities in data set
+data2$labels <- activity_labels$V2[data2$labels]
