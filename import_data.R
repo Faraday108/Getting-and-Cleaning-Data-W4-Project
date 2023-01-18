@@ -20,8 +20,11 @@ subject_test <- read.table("./data/Dataset/UCI HAR Dataset/test/subject_test.txt
 # Load features data, these are the column headers for prior sets. 
 features <- read.table("./data/Dataset/UCI HAR Dataset/features.txt")
 
-# Modify the X_test and X_train sets to include label information and features
-X_test <- cbind(Y_test, X_test)
-names(X_test) <- c("labels",features$V2)
-X_train <- cbind(Y_train, X_train)
-names(X_train) <- c("labels",features$V2)
+# Modify the X_test and X_train sets to include label and subject information
+# in columns
+X_test <- cbind(Y_test, subject_test, X_test)
+X_train <- cbind(Y_train, subject_train, X_train)
+
+# Modify the X_test and X_train sets to include column names from features
+names(X_test) <- c("activity","subject",features$V2)
+names(X_train) <- c("activity","subject",features$V2)
