@@ -31,3 +31,6 @@ data$activity <- activity_labels$V2[data$activity]
 ##     with the average of each variable for each activity and each subject.
 tidy_mean <- data %>% group_by(activity, subject) %>% 
   summarize(across(everything(), list(mean)))
+### Export dataset
+
+write_csv(tidy_mean, "tidy_means_activity_subject.csv")
