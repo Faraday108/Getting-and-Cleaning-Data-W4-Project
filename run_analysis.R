@@ -33,4 +33,4 @@ tidy_mean <- data %>% group_by(activity, subject) %>%
   summarize(across(everything(), list(mean)))
 ### Export dataset
 
-write_csv(tidy_mean, "tidy_means_activity_subject.csv")
+write.table(tidy_mean, "tidy_means_activity_subject.csv", row.names = FALSE)
